@@ -1,10 +1,3 @@
 <template>
-    <h1 class="h1 divide-red-500"> Hello, Vuejs with Laravel </h1>
+    <router-view></router-view>
 </template>
-<script>
-export default {
-    setup() {
-
-    }
-}
-</script>
