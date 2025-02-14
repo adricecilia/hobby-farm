@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: url("/resources/images/grid.png") repeat fixed;
+}
