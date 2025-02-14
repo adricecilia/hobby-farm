@@ -34,8 +34,8 @@ To run the project, follow these steps:
     DB_HOST=mysql
     DB_PORT=3306
     DB_DATABASE=hobby_farm
-    DB_USERNAME=root
-    DB_PASSWORD=root
+    DB_USERNAME=
+    DB_PASSWORD=
     ```
 5. Run the following command to start the project
     ```bash
@@ -48,11 +48,11 @@ To run the project, follow these steps:
     You should see the following containers running:
     - app
     - webserver
-    - db
+    - mysql
 
 7. Run the following command to set up backend dependencies
     ```bash
-    docker exec app bash
+    docker exec -it app bash
     composer install
     php artisan key:generate
     php artisan migrate
