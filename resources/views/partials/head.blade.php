@@ -11,6 +11,9 @@
     <!-- Styles -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
+    <!-- RoughJS -->
+    <script src="https://unpkg.com/roughjs@latest/bundled/rough.js"></script>
+
     <!-- Vite -->
     @vite('resources/css/app.css')
 </head>

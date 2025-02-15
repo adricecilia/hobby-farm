@@ -17,7 +17,7 @@ Open Source Application for hobby farmers to plan their crops and see what they 
 - Database: MySQL
 - Containerization: Docker
 - Styling: Tailwind CSS
-- Libraries: Konva.js (https://konvajs.org/)
+- Libraries: Rough.js (https://github.com/rough-stuff/rough)
 
 ## Installation
 This project is mounted on a docker container. To run the project, you need to have docker installed on your machine. To install docker, follow the instructions on the [official docker website](https://docs.docker.com/get-docker/).

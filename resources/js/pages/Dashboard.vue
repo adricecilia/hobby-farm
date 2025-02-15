@@ -5,7 +5,7 @@
 import Whiteboard from "../components/Whiteboard.vue";
 
 export default {
-    components: {Whiteboard},
+    components: {Whiteboard: Whiteboard},
     data() {
         return {
 
