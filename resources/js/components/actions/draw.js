@@ -1,5 +1,5 @@
-import { drawLine } from '@/components/elements/line';
-import { drawPolygon } from '@/components/elements/polygon';
+import { Line } from '@/components/elements/line';
+import { Polygon } from '@/components/elements/polygon';
 
 export function draw(type, points, polygons = []) {
     if (points.length < 2) {
@@ -7,10 +7,10 @@ export function draw(type, points, polygons = []) {
     }
     switch (type) {
         case 'line':
-            drawLine(getCanvas(), points);
+            Line.draw(getCanvas(), points);
             break;
         case 'polygon':
-            drawPolygon(getCanvas(), points, polygons);
+            Polygon.draw(getCanvas(), points, polygons);
             break;
     }
 }
