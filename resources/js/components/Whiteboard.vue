@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { draw } from '@/components/actions/draw';
 export default {
     data() {
         return {
@@ -51,36 +52,6 @@ export default {
             }
             return Math.abs(area / 2);
         },
-        draw(type) {
-            this.roughCanvas = this.getCanvas();
-            if (this.points.length < 2) {
-                return;
-            }
-            switch (type) {
-                case 'line':
-                    this.drawLine();
-                    break;
-                case 'polygon':
-                    this.drawPolygon();
-                    break;
-            }
-        },
-        drawLine() {
-            for (let i = 0; i < this.points.length - 1; i++) {
-                let xyA = this.points[i];
-                let xyB = this.points[i + 1];
-                this.roughCanvas.line(xyA[0], xyA[1], xyB[0], xyB[1]);
-            }
-        },
-        drawPolygon() {
-            this.polygons.push(this.points);
-            this.roughCanvas.polygon(this.points, {
-                fill: 'rgba(0,0,0,0.2)',
-                stroke: 'black',
-                strokeWidth: 2
-            });
-            this.points = [];
-        },
         // Event handlers
         handleMouseClick(event) {
             this.isDrawing = true;
@@ -92,7 +63,8 @@ export default {
         },
         handleMouseUp() {
             this.isDrawing = false;
-            this.draw('polygon');
+            this.polygons = draw('polygon', this.points, this.polygons);
+            this.points = [];
         },
         handleMouseMove(event) {
             if (!this.isDrawing) {
@@ -112,11 +84,9 @@ export default {
         // Setters
         setPoints(element) {
             this.points = element;
-            this.draw('line');
+            draw('line', this.points);
             if(this.calculateIfNewPointIsNearFirstPoint()){
                 this.handleMouseUp();
-                console.log('Polygon closed');
-                console.log('Area: ', this.calculateAreaOfPolygon(this.points));
             }
         },
         // Getters
@@ -125,9 +95,6 @@ export default {
                 x: event.screenX,
                 y: event.screenY
             };
-        },
-        getCanvas() {
-            return rough.canvas(document.getElementById('canvas'))
         }
     },
     mounted() {
