@@ -15,7 +15,8 @@ export default {
             roughCanvas: null,
             isDrawing: false,
             points: [],
-            polygons: []
+            polygons: [],
+            tool: 'line'
         }
     },
     methods: {
@@ -23,10 +24,11 @@ export default {
         calculateCanvasSize() {
             let width = window.innerWidth;
             let height = window.innerHeight;
-
+            let pixelRatio = window.devicePixelRatio;
             let canvas = document.getElementById('canvas');
-            canvas.setAttribute('width', width * 2);
-            canvas.setAttribute('height', height * 2);
+
+            canvas.setAttribute('width', width * pixelRatio);
+            canvas.setAttribute('height', height * pixelRatio);
             canvas.style.width = width + 'px';
             canvas.style.height = height + 'px';
         },
@@ -63,7 +65,7 @@ export default {
         },
         handleMouseUp() {
             this.isDrawing = false;
-            this.polygons = draw('polygon', this.points, this.polygons);
+            this.polygons = draw(this.tool, this.points, this.polygons);
             this.points = [];
         },
         handleMouseMove(event) {
@@ -84,7 +86,7 @@ export default {
         // Setters
         setPoints(element) {
             this.points = element;
-            draw('line', this.points);
+            draw(this.tool, this.points);
             if(this.calculateIfNewPointIsNearFirstPoint()){
                 this.handleMouseUp();
             }
@@ -102,3 +104,12 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+
+#canvas {
+    position: absolute;
+    z-index: 1;
+}
+
+</style>
